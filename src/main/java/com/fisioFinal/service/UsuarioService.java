@@ -16,10 +16,10 @@ public class UsuarioService {
 
 	
 	@GET
-	@Path("/{coffito}/{password}")
-	public String tryLogin(@PathParam("coffito") String coffito,@PathParam("password") String password ) {
+	@Path("/{email}/{password}")
+	public String tryLogin(@PathParam("email") String email,@PathParam("password") String password ) {
 		UsuarioDao usuarioDao = new UsuarioDao();
-		Usuario user = usuarioDao.tryLogin(coffito,password);
+		Usuario user = usuarioDao.tryLogin(email,password);
 		
 		Gson gson = new Gson();
 		String toReturn=null;
@@ -40,7 +40,7 @@ public class UsuarioService {
 		
 		String jsonSaida = gson.toJson(user);
 		
-		if(jsonSaida.contains("\"codigo\":0"))jsonSaida = "Operação não pode ser realizada:Nome de usuário já existente";
+		if(jsonSaida.contains("\"codigo\":0"))jsonSaida ="Operação não pode ser realizada:Nome de usuário já existente";
 		
 		return jsonSaida;
 	}

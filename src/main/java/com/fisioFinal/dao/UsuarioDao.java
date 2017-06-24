@@ -12,11 +12,11 @@ import com.fisioFinal.util.HibernateUtil;
 
 public class UsuarioDao extends GenericDao<Usuario>{
 	@SuppressWarnings("unchecked")
-	public Usuario tryLogin(String coffito,String password) {
+	public Usuario tryLogin(String email,String password) {
 		Session sessao = HibernateUtil.getFabricaDeSessoesDeSessoes().openSession();
 		try {
 			Criteria consulta = sessao.createCriteria(Usuario.class);
-			consulta.add(Restrictions.eq("coffito", coffito));
+			consulta.add(Restrictions.eq("email", email));
 			consulta.add(Restrictions.eq("password", password));
 			Usuario user = (Usuario) consulta.uniqueResult();
 			return user;

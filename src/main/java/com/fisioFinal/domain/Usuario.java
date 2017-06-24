@@ -12,9 +12,9 @@ import javax.persistence.ManyToMany;
 @SuppressWarnings("serial")
 @Entity
 public class Usuario extends GenericDomain {
-	
+
 	@Column(length = 100, nullable = false,unique=true)
-	private String coffito;
+	private String email;
 	
 	@Column(length = 50, nullable = false)
 	private String password;
@@ -25,8 +25,8 @@ public class Usuario extends GenericDomain {
 	/*@ManyToMany(mappedBy="usuarios")
 	private List<FiltroTratamento> listaTratamentos=null;
 	*/
-	public String getCoffito() {
-		return coffito;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getPassword() {
@@ -37,8 +37,8 @@ public class Usuario extends GenericDomain {
 		return tratamentos;
 	}*/
 
-	public void setCoffito(String coffito) {
-		this.coffito = coffito;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setPassword(String password) {
