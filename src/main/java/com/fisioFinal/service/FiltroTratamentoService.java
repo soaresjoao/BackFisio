@@ -1,5 +1,9 @@
 package com.fisioFinal.service;
 
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -42,9 +46,36 @@ public class FiltroTratamentoService {
 	public String buscar(@PathParam("diagnostigo") String diagnostigo,@PathParam("tempoLesao") String tempoLesao ) {
 		FiltroTratamentoDao filtroTratamentoDao = new FiltroTratamentoDao();
 		List<FiltroTratamento> filtro = filtroTratamentoDao.buscar(diagnostigo,tempoLesao);
-
+		
+		LinkedList<FiltroTratamento>finalFilter = new LinkedList<FiltroTratamento>();
+		double relevance=0;
+		Calendar now = Calendar.getInstance();   
+		int year = now.get(Calendar.YEAR);  
+		
+		for(int i=0;i<filtro.size();i++){
+			relevance=0;
+			FiltroTratamento aux = filtro.get(i);
+			//fazer os aumentos e diminuições de relevancia aqui de acordo com os atributos dos tratamentos
+			relevance-=(year - (int)Integer.valueOf(aux.getAnoPublicacao()))*(0.15);
+			relevance+=2*(aux.getQuantCurtidas()/aux.getTotalUsos());
+			if(aux.getTempoLesao().equals(tempoLesao))relevance+=10;
+			System.out.println("Relevance para o resultado "+ aux.getCodigo()+": "+relevance);
+			filtro.get(i).setRelevance(relevance);
+		}
+		
+		Collections.sort(filtro, new Comparator<FiltroTratamento>() {
+		        public int compare(FiltroTratamento o1, FiltroTratamento o2) {
+		            return o1.getRelevance()<o2.getRelevance()?1:o1.getRelevance()>o2.getRelevance()?-1:0;
+		        }
+		 });
+			
+		for(int i=0;i<3;i++){
+			finalFilter.add(filtro.get(i));
+			System.out.println(finalFilter.get(i).getLink() + " - " + finalFilter.get(i).getRelevance());
+		}
+		
 		Gson gson = new Gson();
-		String json = gson.toJson(filtro);
+		String json = gson.toJson(finalFilter);
 
 		return json;
 	}

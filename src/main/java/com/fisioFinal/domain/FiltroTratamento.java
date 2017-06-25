@@ -43,6 +43,8 @@ public class FiltroTratamento extends GenericDomain{
 	@Column(nullable = false)
 	private int totalUsos;
 	
+	double relevance;
+	
 	public String getDiagnostigo() {
 		return diagnostigo;
 	}
@@ -89,5 +91,29 @@ public class FiltroTratamento extends GenericDomain{
 
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
+	}
+
+	public int getQuantCurtidas() {
+		return quantCurtidas;
+	}
+
+	public int getTotalUsos() {
+		return totalUsos;
+	}
+
+	public void setQuantCurtidas(int quantCurtidas) {
+		this.quantCurtidas = quantCurtidas;
+	}
+
+	public void setTotalUsos(int totalUsos) {
+		this.totalUsos = totalUsos;
+	}
+
+	public double getRelevance() {
+		return relevance;
+	}
+
+	public void setRelevance(double relevance) {
+		this.relevance = relevance;
 	}
 }

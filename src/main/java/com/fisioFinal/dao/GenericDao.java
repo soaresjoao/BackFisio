@@ -75,7 +75,7 @@ public class GenericDao<Entidade> {
 		try {
 			Criteria consulta = sessao.createCriteria(classe);
 			consulta.add(Restrictions.eq("diagnostigo",diagnostigo));
-			consulta.add(Restrictions.eq("tempoLesao",tempoLesao));
+			//consulta.add(Restrictions.eq("tempoLesao",tempoLesao));
 			List<Entidade> resultado = consulta.list();
 			
 			return resultado;

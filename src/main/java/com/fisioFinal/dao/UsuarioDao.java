@@ -19,6 +19,7 @@ public class UsuarioDao extends GenericDao<Usuario>{
 			consulta.add(Restrictions.eq("email", email));
 			consulta.add(Restrictions.eq("password", password));
 			Usuario user = (Usuario) consulta.uniqueResult();
+			if(user==null)throw new RuntimeException();
 			return user;
 		} catch (RuntimeException erro) {
 			throw erro;
