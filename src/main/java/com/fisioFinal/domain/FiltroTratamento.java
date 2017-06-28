@@ -13,8 +13,8 @@ import javax.persistence.ManyToMany;
 public class FiltroTratamento extends GenericDomain{
 	/*@ManyToMany
 	 @JoinTable(name="Usuario_Tratamento",
-     joinColumns={@JoinColumn(name="Tratamento_ID")},
-     inverseJoinColumns={@JoinColumn(name="Usuario_ID")})
+	 joinColumns={@JoinColumn(name="Tratamento_ID")},
+	 inverseJoinColumns={@JoinColumn(name="Usuario_ID")})
 	private List<Usuario> usuarios=null;
 	*/
 	@Column(length = 100, nullable = false)
@@ -23,7 +23,7 @@ public class FiltroTratamento extends GenericDomain{
 	@Column(length = 50, nullable = false)
 	private String tempoLesao;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 500, nullable = false)
 	private String link;
 	
 	//@Lob

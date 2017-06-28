@@ -1,11 +1,11 @@
 package com.fisioFinal.domain;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
@@ -21,6 +21,11 @@ public class Usuario extends GenericDomain {
 	
 	@Column(length = 50, nullable = false)
 	private String nome;
+	
+	@Column(length = 50, nullable = true,unique=true)
+	private String coffito;
+	
+	
 	
 	/*@ManyToMany(mappedBy="usuarios")
 	private List<FiltroTratamento> listaTratamentos=null;
@@ -52,6 +57,7 @@ public class Usuario extends GenericDomain {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	/*public void setEstado(List<FiltroTratamento> tratamentos) {
 		this.tratamentos = tratamentos;

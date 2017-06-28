@@ -1,7 +1,5 @@
 package com.fisioFinal.service;
 
-import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,7 +12,6 @@ import com.google.gson.Gson;
 @Path("usuario")
 public class UsuarioService {
 
-	
 	@GET
 	@Path("/{email}/{password}")
 	public String tryLogin(@PathParam("email") String email,@PathParam("password") String password ) {
@@ -22,12 +19,30 @@ public class UsuarioService {
 		Usuario user = usuarioDao.tryLogin(email,password);
 		
 		Gson gson = new Gson();
-		String toReturn=null;
-		if(user!=null)toReturn=user.getNome();
-		String json = gson.toJson(toReturn);
-
+		String json = gson.toJson(user);
 		return json;
 	}
+	
+	@GET
+	@Path ("/{email}")
+	public String getNameByEmail(@PathParam("email") String email){
+		UsuarioDao usuarioDao = new UsuarioDao();
+		String username = usuarioDao.buscarPorAtributo("email", email).getNome();
+		Gson gson = new Gson();
+		String json = gson.toJson(username);
+		return json;
+	}
+		
+	/*@POST
+	@Path ("/{email}/addTrat/{tratCod}")
+	public String addTrat(@PathParam("email") String email, @PathParam("tratCod") long tratCod){
+		UsuarioDao userDao= new UsuarioDao();
+		long userCode = userDao.buscaPorEmail(email).getCodigo();
+		FiltroTratamentoDao tratDao = new FiltroTratamentoDao();
+		long tratCode = tratDao.buscaPorCodigo(tratCod).getCodigo();
+		
+		
+	}*/
 	
 	
 	@POST

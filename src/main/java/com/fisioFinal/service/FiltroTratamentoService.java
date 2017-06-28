@@ -10,7 +10,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import com.fisioFinal.dao.Comentario_TratamentoDao;
 import com.fisioFinal.dao.FiltroTratamentoDao;
+import com.fisioFinal.domain.Comentario_Tratamento;
 import com.fisioFinal.domain.FiltroTratamento;
 import com.google.gson.Gson;
 
@@ -30,17 +32,22 @@ public class FiltroTratamentoService {
 		
 	}
 	
-	/*@GET
-	public String listar() {
+	@GET
+	@Path("/{codigo}")
+	public String buscaSimples(@PathParam("codigo") long codigo){
 		FiltroTratamentoDao filtroTratamentoDao = new FiltroTratamentoDao();
-		List<FiltroTratamento> filtros = filtroTratamentoDao.listar("link");
-
+		FiltroTratamento tratamento = filtroTratamentoDao.buscarPorAtributo("codigo", codigo);
+		//Comentario_TratamentoDao ctDao = new Comentario_TratamentoDao();
+		//List<Comentario_Tratamento> comentarios=ctDao.buscaPorTratamento(codigo);
+		List<FiltroTratamento> tratList = new LinkedList<FiltroTratamento>();
+		tratList.add(tratamento);
 		Gson gson = new Gson();
-		String json = gson.toJson(filtros);
-
-		return json;
-	}*/
-/*/{tempoLessao}  , @PathParam("tempoLessao") String tempoLessao  , tempoLessao*/
+		//Gson gson2=new Gson();
+		String json = gson.toJson(tratList);
+		//String json2 = gson2.toJson(comentarios);
+		return json/*+json2*/;
+	}
+	
 	@GET
 	@Path("/{diagnostigo}/{tempoLesao}")
 	public String buscar(@PathParam("diagnostigo") String diagnostigo,@PathParam("tempoLesao") String tempoLesao ) {

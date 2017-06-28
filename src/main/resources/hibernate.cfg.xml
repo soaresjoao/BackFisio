@@ -35,7 +35,8 @@
 		<!-- Mapeamento das entidades -->
 		<mapping class="com.fisioFinal.domain.FiltroTratamento" />
 		<mapping class="com.fisioFinal.domain.Usuario" />
-		
+		<mapping class="com.fisioFinal.domain.Usuario_Tratamento" />
+		<mapping class="com.fisioFinal.domain.Comentario_Tratamento" />
 		
 	</session-factory>
 

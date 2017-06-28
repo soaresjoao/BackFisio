@@ -1,10 +1,7 @@
 package com.fisioFinal.dao;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.fisioFinal.domain.Usuario;
@@ -28,5 +25,20 @@ public class UsuarioDao extends GenericDao<Usuario>{
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Usuario buscaPorEmail(String email) {
+		Session sessao = HibernateUtil.getFabricaDeSessoesDeSessoes().openSession();
+		try {
+			Criteria consulta = sessao.createCriteria(Usuario.class);
+			consulta.add(Restrictions.eq("email", email));			
+			Usuario user = (Usuario) consulta.uniqueResult();
+			if(user==null)throw new RuntimeException();
+			return user;
+		} catch (RuntimeException erro) {
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
 	
 }

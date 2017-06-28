@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.fisioFinal.domain.Usuario;
 import com.fisioFinal.util.HibernateUtil;
 
 public class GenericDao<Entidade> {
@@ -61,6 +62,36 @@ public class GenericDao<Entidade> {
 			consulta.addOrder(Order.asc(campoOrdenacao));
 			List<Entidade> resultado = consulta.list();
 			return resultado;
+		} catch (RuntimeException erro) {
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Entidade buscarPorAtributo(String nomeAtributo, String valorAtributo){
+		Session sessao = HibernateUtil.getFabricaDeSessoesDeSessoes().openSession();
+		try {
+			Criteria consulta = sessao.createCriteria(classe);
+			consulta.add(Restrictions.eq(nomeAtributo, valorAtributo));			
+			Entidade enti = (Entidade) consulta.uniqueResult();
+			if(enti==null)throw new RuntimeException();
+			return enti;
+		} catch (RuntimeException erro) {
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
+	public Entidade buscarPorAtributo(String nomeAtributo, long valorAtributo){
+		Session sessao = HibernateUtil.getFabricaDeSessoesDeSessoes().openSession();
+		try {
+			Criteria consulta = sessao.createCriteria(classe);
+			consulta.add(Restrictions.eq(nomeAtributo, valorAtributo));			
+			Entidade enti = (Entidade) consulta.uniqueResult();
+			if(enti==null)throw new RuntimeException();
+			return enti;
 		} catch (RuntimeException erro) {
 			throw erro;
 		} finally {
