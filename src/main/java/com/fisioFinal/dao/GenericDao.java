@@ -6,10 +6,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.fisioFinal.domain.Usuario;
 import com.fisioFinal.util.HibernateUtil;
 
 public class GenericDao<Entidade> {
@@ -100,7 +101,7 @@ public class GenericDao<Entidade> {
 	}
 	
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public List<Entidade> buscar(String diagnostigo, String tempoLesao){
+	public List<Entidade> buscar(String diagnostigo){
 		Session sessao = HibernateUtil.getFabricaDeSessoesDeSessoes().openSession();
 		
 		try {

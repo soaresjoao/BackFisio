@@ -13,8 +13,7 @@ public class FiltroTratamentoDaoTest {
 		tratamento.setAnoPublicacao("2013");
 		tratamento.setDiagnostigo("patellofemoral pain");
 		tratamento.setLink("http://www.jospt.org/doi/10.2519/jospt.2007.2433?code=jospt-site");
-		tratamento.setQuantCurtidas(3);
-		tratamento.setReferencia("Ref. to jospt");
+		tratamento.setAvaliacoesPositivas(3);
 		tratamento.setRelevance(0);
 		tratamento.setResumo("Randomized controlled trial, pretest-posttest design.");
 		tratamento.setTempoLesao("Aguda");
