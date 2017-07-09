@@ -27,10 +27,10 @@ public class FiltroTratamento extends GenericDomain{
 	private String link;
 	
 	@Column(nullable = true)
-	private int duracaoTrat;//em semanas
+	private String duracaoTrat;//em semanas
 	
 	@Column(nullable = false)
-	private int numeroParticipantes;
+	private String numeroParticipantes;
 	
 	@Column(columnDefinition="TEXT", nullable=false)
 	private String resumo;
@@ -108,11 +108,11 @@ public class FiltroTratamento extends GenericDomain{
 		this.link = link;
 	}
 
-	public int getNumeroParticipantes() {
+	public String getNumeroParticipantes() {
 		return numeroParticipantes;
 	}
 
-	public void setNumeroParticipantes(int numeroParticipantes) {
+	public void setNumeroParticipantes(String numeroParticipantes) {
 		this.numeroParticipantes = numeroParticipantes;
 	}
 
@@ -188,11 +188,11 @@ public class FiltroTratamento extends GenericDomain{
 		this.relevance = relevance;
 	}
 
-	public int getDuracaoTrat() {
+	public String getDuracaoTrat() {
 		return duracaoTrat;
 	}
 
-	public void setDuracaoTrat(int duracaoTrat) {
+	public void setDuracaoTrat(String duracaoTrat) {
 		this.duracaoTrat = duracaoTrat;
 	}
 	

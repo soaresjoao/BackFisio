@@ -95,8 +95,6 @@ public class FiltroTratamentoService {
 			if(totAval==0)totAval++;
 			relevance+=2*((aux.getAvaliacoesPositivas()-aux.getAvaliacoesNegativas())/(totAval));
 			relevance+=(aux.getMediaComentEficacia()+aux.getMediaComentTempoTrat())*(0.2);
-			relevance+=aux.getNumeroParticipantes()*0.08;
-			relevance-=aux.getDuracaoTrat();
 			if(aux.getTempoLesao().equals(tempoLesao)){
 				relevance+=10;
 			}
