@@ -1,0 +1,8 @@
+---
+applications:
+ - name: fd-back
+   random-route: true
+   path: target/FisioFinal.war
+   memory: 256M
+   instances: 1
+   buildpack: java_buildpack
