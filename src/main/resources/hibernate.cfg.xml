@@ -10,7 +10,7 @@
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://admin:CXDGQLWJAVLSASFA@sl-us-south-1-portal.4.dblayer.com:18038/newfisio</property>
+		<property name="connection.url">jdbc:mysql://sl-us-south-1-portal.4.dblayer.com:18038/newfisio</property>
 		<property name="connection.username">admin</property>
 		<property name="connection.password">CXDGQLWJAVLSASFA</property>
 
